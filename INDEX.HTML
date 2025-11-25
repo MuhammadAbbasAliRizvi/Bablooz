@@ -3,27 +3,361 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>  fluat ui Colors Clone</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Bablooz - Where Taste Originates From</title>
+    <meta name="description" content="Bablooz serves delicious pizza, BBQ, burgers, Chinese, and fast food, crafted fresh with love, flavor, and quick service daily.">
+    
+    <!-- External Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="nav">
-        <div class="logo">Flat UI Colors</div>
-        <ul>
-            <li>Designs</li>
-            <li>Picker</li>
-        </ul>
-    </nav>
+    <!-- Loading Animation -->
+    <div class="loading">
+        <div class="loader"></div>
+    </div>
 
-    <!-- Main Content -->
-    <section class="main">
-        <div class="box"><li><a href="./assets/islamabad plater.html"><img src="assets/pics/Screenshot (1).png" alt="Image 1"></li></a></div>
-        <div class="box"><li><a href="assets/karachi plater.html"><img src="assets/pics/Screenshot (1).png" alt="Image 1"></li></a></div>
-        <div class="box"><li><a href="./assets/lahore plater .html"><img src="assets/pics/Screenshot (1).png" alt="Image 1"></li></a></div>
-        <div class="box"><li><a href="./assets/multan pater.html"><img src="assets/pics/Screenshot (1).png" alt="Image 1"></li></a></div>
-        <div class="box"><li><a href="./assets/parachier plater.html"><img src="assets/pics/Screenshot (1).png" alt="Image 1"></li></a></div>
-        <div class="box"><li><a href="./assets/peshwer plater.html"><img src="./assets/pics/Screenshot (1).png" alt=""></li></a></div>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="./pics/cropped-Bablooz-Logo-1-e1745660157406-1.png" alt="log">
+                </div>
+                
+                <nav class="main-nav">
+                    <ul class="nav-list">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="./menu.html">Menu</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <button class="btn btn-outline-light franchise-btn">Order Now</button>
+                    <button class="btn btn-danger order-btn">
+                        Order Online <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                
+                <button class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Banner with Slider -->
+    <section class="hero-banner" id="home">
+        <div class="slider-container">
+            <div class="slider">
+                <!-- Slide 1 -->
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1551782450-17144efb9c50?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Delicious Food">
+                    <div class="minimal-overlay">
+                        <h1 class="glow-title">Welcome to Bablooz</h1>
+                        <p>Where Taste Originates From - Experience the best burgers, pizza, BBQ and Chinese cuisine</p>
+                        <a class="btn btn-primary" href="./menu.html">View Our Menu</a>
+                    </div>
+                </div>
+                
+                <!-- Slide 2 -->
+                <div class="slide">
+                    <img src="./pics/yansi-keim-SJGem633mvA-unsplash.jpg" alt="Delicious Pizza">
+                    <div class="minimal-overlay">
+                        <h1 class="glow-title">Authentic Flavors</h1>
+                        <p>Traditional recipes with a modern twist</p>
+                        <button class="btn btn-primary">Order Now</button>
+                    </div>
+                </div>
+                
+                <!-- Slide 3 -->
+                <div class="slide">
+                    <img src="./pics/Restaurant Branding.jpg" alt="Tasty Burgers">
+                    <div class="minimal-overlay">
+                        <h1 class="glow-title">Flame-Grilled Taste</h1>
+                        <p>Crave-worthy burgers, smoky BBQ, cheesy pizzas & bold Chinese flavors</p>
+                        <button class="btn btn-primary">Book a Table</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slider Controls -->
+            <button class="slider-arrow prev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="slider-arrow next">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            
+            <div class="slider-controls">
+                <div class="slider-dot active"></div>
+                <div class="slider-dot"></div>
+                <div class="slider-dot"></div>
+            </div>
+        </div>
     </section>
+
+    <!-- What We Offer Section -->
+    <section class="offer-section" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>What We Offer?</h2>
+                <p>Highlights the dedication behind the cooking, ideal for a chef-driven or artisanal restaurant.</p>
+            </div>
+            
+            <div class="offer-grid">
+                <div class="offer-item">
+                    <img class="offer-img" src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Chinese Food">
+                    <h4>Chinese</h4>
+                    <p>Authentic Chinese flavors with fresh ingredients</p>
+                </div>
+                
+                <div class="offer-item">
+                    <img class="offer-img" src="https://images.unsplash.com/photo-1551782450-17144efb9c50?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Burger">
+                    <h4>Burger</h4>
+                    <p>Juicy, flame-grilled burgers with premium ingredients</p>
+                </div>
+                
+                <div class="offer-item">
+                    <img class="offer-img" src=".https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Pizza">
+                    <h4>Pizza</h4>
+                    <p>Freshly baked pizzas with delicious toppings</p>
+                </div>
+                
+                <div class="offer-item">
+                    <img class="offer-img" src="./pics/Cheesy French Fries Creative Ads Poster Idea.jpg" alt="Fastfood">
+                    <h4>Fastfood</h4>
+                    <p>Quick and tasty meals for on-the-go</p>
+                </div>
+                
+                <div class="offer-item">
+                    <img class="offer-img" src="./pics/yansi-keim-SJGem633mvA-unsplash.jpg" alt="Barbecue">
+                    <h4>Barbecue</h4>
+                    <p>Smoky, tender BBQ with signature sauces</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Highlights Section -->
+    <section class="menu-highlights" id="menu">
+        <div class="container">
+            <div class="section-header">
+                <h2>Hungry? Pick Your Flavor!</h2>
+                <p>Explore our delicious menu items</p>
+            </div>
+            
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1398&q=80" alt="Beef Burgers">
+                    <div class="menu-details">
+                        <h4>Beef Burgers</h4>
+                        <p>Juicy beef patties with fresh ingredients</p>
+                        <div class="price">From Rs 390</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Pizza">
+                    <div class="menu-details">
+                        <h4>Pizza</h4>
+                        <p>Freshly baked with premium toppings</p>
+                        <div class="price">From Rs 1300</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <img src="./pics/yansi-keim-SJGem633mvA-unsplash.jpg" alt="BBQ">
+                    <div class="menu-details">
+                        <h4>Barbecue</h4>
+                        <p>Smoky and tender grilled specialties</p>
+                        <div class="price">From Rs 750</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a class="btn btn-primary" href="./menu.html">View Full Menu</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Happy Customers</h2>
+                <p>See what our customers are saying about us</p>
+            </div>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "Best BBQ Chicken Pizza in town! Loaded with toppings and always fresh. Worth every rupee!"
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">A</div>
+                        <div class="author-info">
+                            <h5>Ayesha M</h5>
+                            <p>Customer</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "Beef Seekh Kababs melt in your mouth! Juicy, flavorful, and grilled to perfection. A must-try!"
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">B</div>
+                        <div class="author-info">
+                            <h5>Bilal R</h5>
+                            <p>Customer</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "Chicken Chow Mein tastes like heaven! Quick delivery and generous portions. My go-to comfort food!"
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">Z</div>
+                        <div class="author-info">
+                            <h5>Zainab K</h5>
+                            <p>Customer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="franchise-locations" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h1>Bablooz</h1>
+                <h2>Contact Us</h2>
+                <p>Get in touch with us for reservations, orders, or any inquiries</p>
+            </div>
+
+            <div class="location-card">
+                <div class="location-info">
+                    <div class="city-tag">Karachi</div>
+                    <h3><span>Bablooz</span> Restaurant</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> Main Chiragh hotel, Landhi, Karachi, Pakistan</p>
+                        <p><i class="fas fa-phone"></i> Ph: +92 311 110 5669</p>
+                        <p><i class="fas fa-envelope"></i> Email: bablooz.contact@gmail.com</p>
+                    </div>
+                    <button class="btn btn-outline-light direction-btn">
+                        Get Directions <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                <div class="location-image">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Karachi Branch">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Feed -->
+    <section class="social-feed">
+        <div class="container">
+            <h3 class="section-title">Social Feed</h3>
+            <div class="feed-grid">
+                <div class="feed-item">
+                    <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80" alt="Bablooz Burger">
+                    <div class="feed-overlay">
+                        <p>Our Signature Burger</p>
+                    </div>
+                </div>
+                <div class="feed-item">
+                    <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1386&q=80" alt="Bablooz Pizza">
+                    <div class="feed-overlay">
+                        <p>Delicious Pizza</p>
+                    </div>
+                </div>
+                <div class="feed-item">
+                    <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1432&q=80" alt="Bablooz BBQ">
+                    <div class="feed-overlay">
+                        <p>Authentic BBQ</p>
+                    </div>
+                </div>
+                <div class="feed-item">
+                    <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1384&q=80" alt="Bablooz Salad">
+                    <div class="feed-overlay">
+                        <p>Fresh Salads</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section about">
+                    <h2 style="color: var(--secondary-color); margin-bottom: 20px;">Bablooz</h2>
+                    <p>Bablooz serves delicious pizza, BBQ, burgers, Chinese, and fast food, crafted fresh with love, flavor, and quick service daily.</p>
+                    <div class="footer-links">
+                        <a href="#">Terms & conditions</a>
+                        <a href="#">Privacy policy</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="./menu.html">Menu</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#">Order Now</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section contact">
+                    <h4>Contact Details</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-phone"></i> +92 311 110 5669</p>
+                        <p><i class="fas fa-envelope"></i> bablooz.contact@gmail.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Main Chiragh hotel, Landhi, Karachi, Pakistan</p>
+                    </div>
+                </div>
+                
+                <div class="footer-section social">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <div class="newsletter">
+                        <h5>Subscribe to our Newsletter</h5>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Your email address" required>
+                            <button type="submit">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Bablooz | Where Taste Originates From. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./app.js"></script>
 </body>
 </html>

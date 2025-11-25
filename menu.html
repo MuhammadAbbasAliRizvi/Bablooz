@@ -1,0 +1,2006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Bablooz | Where Taste Originates From</title>
+    
+    <!-- External Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        /* CSS Variables for consistent theming */
+        :root {
+            --primary-color: #C8102E; /* Muted Red */
+            --secondary-color: #D4AF37; /* Muted Gold */
+            --accent-color: #1A1A1A; /* Dark Gray instead of pure black */
+            --dark-color: #1A1A1A;
+            --light-color: #FFFFFF;
+            --text-color: #F5F5F5;
+            --gray-color: #B0B0B0;
+            --section-padding: 80px 0;
+            --border-radius: 12px;
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --soft-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            --hover-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Import Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0A0A0A;
+            color: var(--text-color);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(20px);
+            position: sticky;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        .header.scrolled {
+            background: rgba(10, 10, 10, 0.98);
+            box-shadow: var(--soft-shadow);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            position: relative;
+        }
+
+        .logo h2 {
+            color: var(--secondary-color);
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .main-nav .nav-list {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main-nav a {
+            color: var(--light-color);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding: 8px 0;
+        }
+
+        .main-nav a:hover {
+            color: var(--secondary-color);
+        }
+
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transition: var(--transition);
+        }
+
+        .main-nav a:hover::after {
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--primary-color), #D32F2F);
+            color: var(--light-color);
+            border: none;
+            padding: 12px 28px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            letter-spacing: 0.02em;
+            box-shadow: var(--soft-shadow);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: var(--hover-shadow);
+            background: linear-gradient(135deg, #D32F2F, var(--primary-color));
+        }
+
+        .btn-outline-light {
+            border: 1.5px solid rgba(255, 255, 255, 0.3);
+            background: transparent;
+            color: var(--light-color);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-outline-light:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--secondary-color);
+        }
+
+        .order-btn {
+            padding: 12px 28px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--light-color);
+            background: none;
+            border: none;
+            padding: 8px;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .menu-toggle:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Menu Hero Section */
+        .menu-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 150px 0 100px;
+            text-align: center;
+        }
+
+        .menu-hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--secondary-color), #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .menu-hero p {
+            font-size: 1.4rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Menu Navigation */
+        .menu-nav {
+            background: var(--dark-color);
+            padding: 20px 0;
+            position: sticky;
+            top: 80px;
+            z-index: 999;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .menu-nav-list {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .menu-nav-item {
+            padding: 10px 20px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .menu-nav-item:hover, .menu-nav-item.active {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-color);
+            transform: translateY(-2px);
+        }
+
+        /* Menu Sections */
+        .menu-section {
+            padding: 80px 0;
+            display: none;
+        }
+
+        .menu-section.active {
+            display: block;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(135deg, var(--secondary-color), #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: var(--soft-shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--hover-shadow);
+            border-color: rgba(210, 47, 47, 0.3);
+        }
+
+        .item-info h4 {
+            margin-bottom: 8px;
+            font-size: 1.2rem;
+            color: var(--light-color);
+        }
+
+        .item-info p {
+            color: var(--gray-color);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .item-price {
+            color: var(--secondary-color);
+            font-weight: 600;
+            font-size: 1.3rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .price-variants {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 5px;
+        }
+
+        .price-variant {
+            color: var(--secondary-color);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        .main-footer {
+            background: linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 50%, #2D1B1B 100%);
+            color: var(--text-color);
+            padding: 80px 0 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .footer-section h4 {
+            color: var(--light-color);
+            margin-bottom: 30px;
+            font-size: 1.4rem;
+            position: relative;
+            padding-bottom: 12px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .footer-section h4::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            bottom: 0;
+            left: 0;
+            border-radius: 2px;
+        }
+
+        .about p {
+            margin: 25px 0;
+            line-height: 1.8;
+            color: var(--gray-color);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--gray-color);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .links li {
+            margin-bottom: 15px;
+        }
+
+        .links a {
+            color: var(--gray-color);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        .links a:hover {
+            color: var(--secondary-color);
+            padding-left: 8px;
+        }
+
+        .contact-info p {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 12px 0;
+            color: var(--gray-color);
+            font-size: 1rem;
+        }
+
+        .contact-info i {
+            color: var(--secondary-color);
+            width: 20px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 35px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--light-color);
+            text-decoration: none;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .social-icons a:hover {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray-color);
+            font-size: 0.95rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .main-nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: rgba(10, 10, 10, 0.98);
+                backdrop-filter: blur(20px);
+                padding: 80px 30px 30px;
+                transition: var(--transition);
+                z-index: 999;
+                box-shadow: -5px 0 30px rgba(0, 0, 0, 0.3);
+                border-left: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .main-nav.active {
+                right: 0;
+            }
+            
+            .main-nav .nav-list {
+                flex-direction: column;
+                gap: 25px;
+            }
+            
+            .main-nav a {
+                font-size: 1.2rem;
+                padding: 12px 0;
+                display: block;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .menu-toggle {
+                display: block;
+                z-index: 1000;
+            }
+            
+            .header-actions .franchise-btn {
+                display: none;
+            }
+            
+            .menu-hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .menu-hero p {
+                font-size: 1.2rem;
+            }
+            
+            .menu-nav-list {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+            
+            .menu-nav-item {
+                white-space: nowrap;
+            }
+            
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .menu-hero {
+                padding: 120px 0 80px;
+            }
+            
+            .menu-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .menu-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .item-price, .price-variants {
+                align-self: flex-end;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="./pics/cropped-Bablooz-Logo-1-e1745660157406-1.png" alt="" height="80px"  width="150px">   
+                </div>
+                
+                <nav class="main-nav">
+                    <ul class="nav-list">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="menu.html" class="active">Menu</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <button class="btn btn-outline-light franchise-btn">Order Now</button>
+                    <button class="btn btn-danger order-btn">
+                        Order Online <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                
+                <button class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Menu Hero Section -->
+    <section class="menu-hero">
+        <div class="container">
+            <h1>Taste the Fast Food Revolution!</h1>
+            <p>Explore our delicious menu featuring burgers, pizza, BBQ, Chinese, and much more. Every dish is crafted with passion and the finest ingredients.</p>
+            <button class="btn btn-primary">Order Now</button>
+        </div>
+    </section>
+
+    <!-- Menu Navigation -->
+    <section class="menu-nav">
+        <div class="container">
+            <ul class="menu-nav-list">
+                <li class="menu-nav-item active" data-category="starters">STARTERS</li>
+                <li class="menu-nav-item" data-category="broast">BROAST</li>
+                <li class="menu-nav-item" data-category="wings">WINGS</li>
+                <li class="menu-nav-item" data-category="strips">STRIPS</li>
+                <li class="menu-nav-item" data-category="wisters">WISTERS</li>
+                <li class="menu-nav-item" data-category="rolls">ROLLS</li>
+                <li class="menu-nav-item" data-category="sandwich">SANDWICH</li>
+                <li class="menu-nav-item" data-category="chinese">CHINESE</li>
+                <li class="menu-nav-item" data-category="pasta">PASTA</li>
+                <li class="menu-nav-item" data-category="tikka">TIKKA</li>
+                <li class="menu-nav-item" data-category="burgers">BURGERS</li>
+                <li class="menu-nav-item" data-category="beef-burgers">BEEF BURGERS</li>
+                <li class="menu-nav-item" data-category="bbq">BARBEQUE</li>
+                <li class="menu-nav-item" data-category="platters">PLATTERS</li>
+                <li class="menu-nav-item" data-category="pizzas">PIZZAS</li>
+                <li class="menu-nav-item" data-category="beverages">BEVERAGES</li>
+                <li class="menu-nav-item" data-category="extras">EXTRAS</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Menu Sections -->
+    <main class="container">
+        <!-- STARTERS Section -->
+        <section id="starters" class="menu-section active">
+            <div class="section-title">
+                <h2>STARTERS</h2>
+                <p>Kickstart your meal with our delicious starters</p>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Plain Fries</h4>
+                        <p>Crispy golden fries with a sprinkle of salt</p>
+                    </div>
+                    <div class="item-price">Rs 150</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Masala Fries</h4>
+                        <p>Fries tossed in our special masala blend</p>
+                    </div>
+                    <div class="item-price">Rs 200</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Mayo Fries</h4>
+                        <p>Crispy fries topped with creamy mayonnaise</p>
+                    </div>
+                    <div class="item-price">Rs 230</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Chipotle Fries</h4>
+                        <p>Fries with a smoky chipotle twist</p>
+                    </div>
+                    <div class="item-price">Rs 300</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Cheese Blaster Fries</h4>
+                        <p>Loaded fries with melted cheese and special sauce</p>
+                    </div>
+                    <div class="item-price">Rs 350</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Animal Wild Fries</h4>
+                        <p>Fries loaded with multiple toppings and sauces</p>
+                    </div>
+                    <div class="item-price">Rs 350</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Pizza Fries</h4>
+                        <p>Fries topped with pizza sauce, cheese, and toppings</p>
+                    </div>
+                    <div class="item-price">Rs 400</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BROAST Section -->
+        <section id="broast" class="menu-section">
+            <div class="section-title">
+                <h2>BROAST</h2>
+                <p>Crispy, juicy broast chicken at its best</p>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Crispy Broast (Leg)</h4>
+                        <p>Juicy chicken leg piece, perfectly broasted</p>
+                    </div>
+                    <div class="item-price">Rs 460</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Crispy Broast (Chest)</h4>
+                        <p>Tender chicken chest piece, crispy and flavorful</p>
+                    </div>
+                    <div class="item-price">Rs 490</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Chatpatta Broast</h4>
+                        <p>Spicy and tangy broast with special masala</p>
+                    </div>
+                    <div class="item-price">Rs 520</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Bablooz Lava Cheese Broast</h4>
+                        <p>Broast topped with molten cheese and special sauce</p>
+                    </div>
+                    <div class="item-price">Rs 550</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WINGS Section -->
+        <section id="wings" class="menu-section">
+            <div class="section-title">
+                <h2>WINGS</h2>
+                <p>Flavor-packed chicken wings in various styles</p>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Masala Wings</h4>
+                        <p>Chicken wings tossed in traditional masala</p>
+                    </div>
+                    <div class="item-price">Rs 400</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Chipotle Wings</h4>
+                        <p>Wings with smoky chipotle flavor</p>
+                    </div>
+                    <div class="item-price">Rs 440</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Honey Mustard Wings</h4>
+                        <p>Sweet and tangy honey mustard glazed wings</p>
+                    </div>
+                    <div class="item-price">Rs 480</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STRIPS Section -->
+        <section id="strips" class="menu-section">
+            <div class="section-title">
+                <h2>STRIPS</h2>
+                <p>Tender chicken strips in delicious varieties</p>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Crispy Chick</h4>
+                        <p>Classic crispy chicken strips</p>
+                    </div>
+                    <div class="item-price">Rs 320</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Masala Crispy Chick</h4>
+                        <p>Crispy strips with spicy masala coating</p>
+                    </div>
+                    <div class="item-price">Rs 340</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Cheesy Chick</h4>
+                        <p>Chicken strips with cheesy coating</p>
+                    </div>
+                    <div class="item-price">Rs 370</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Mayo Cheesy Chick</h4>
+                        <p>Cheesy strips with mayonnaise drizzle</p>
+                    </div>
+                    <div class="item-price">Rs 400</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WISTERS Section -->
+        <section id="wisters" class="menu-section">
+            <div class="section-title">
+                <h2>WISTERS</h2>
+                <p>Our signature wister creations</p>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Wister</h4>
+                        <p>Classic wister with our special recipe</p>
+                    </div>
+                    <div class="item-price">Rs 450</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Chicky Cluster Wister</h4>
+                        <p>Wister loaded with chicken chunks</p>
+                    </div>
+                    <div class="item-price">Rs 500</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Wister Master Blaster</h4>
+                        <p>The ultimate wister experience</p>
+                    </div>
+                    <div class="item-price">Rs 520</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ROLLS Section -->
+        <section id="rolls" class="menu-section">
+            <div class="section-title">
+                <h2>ROLLS</h2>
+                <p>Delicious rolls packed with flavor</p>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Chicken Chatni Roll</h4>
+                        <p>Chicken roll with special chatni</p>
+                    </div>
+                    <div class="item-price">Rs 180</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Mint Cheese Roll</h4>
+                        <p>Roll with refreshing mint and cheese</p>
+                    </div>
+                    <div class="item-price">Rs 190</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Butter Roll</h4>
+                        <p>Buttery soft roll with flavorful filling</p>
+                    </div>
+                    <div class="item-price">Rs 190</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Sweet Tangy Roll</h4>
+                        <p>Roll with sweet and tangy sauce</p>
+                    </div>
+                    <div class="item-price">Rs 190</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Pepper Pop Malai Boti Roll</h4>
+                        <p>Malai boti with peppery twist in a roll</p>
+                    </div>
+                    <div class="item-price">Rs 200</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Green Chatni Roll</h4>
+                        <p>Roll with zesty green chatni</p>
+                    </div>
+                    <div class="item-price">Rs 200</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Chicken Cheese Roll</h4>
+                        <p>Classic chicken and cheese combination</p>
+                    </div>
+                    <div class="item-price">Rs 210</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Butter Crunch Roll</h4>
+                        <p>Crispy roll with buttery flavor</p>
+                    </div>
+                    <div class="item-price">Rs 220</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Chicken Sriracha Roll</h4>
+                        <p>Spicy sriracha chicken in a roll</p>
+                    </div>
+                    <div class="item-price">Rs 220</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Beef Seekh Kabab Roll</h4>
+                        <p>Juicy beef seekh kabab wrapped in paratha</p>
+                    </div>
+                    <div class="item-price">Rs 220</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Gola Kabab Roll</h4>
+                        <p>Traditional gola kabab in roll form</p>
+                    </div>
+                    <div class="item-price">Rs 220</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Chicken Reshmi Kabab Roll</h4>
+                        <p>Soft reshmi kabab wrapped in paratha</p>
+                    </div>
+                    <div class="item-price">Rs 230</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Butter Cheese Roll</h4>
+                        <p>Buttery roll with melted cheese</p>
+                    </div>
+                    <div class="item-price">Rs 240</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Cheesy Mayo Melt Roll</h4>
+                        <p>Roll with cheesy mayo filling</p>
+                    </div>
+                    <div class="item-price">Rs 240</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Chicken Zinga Roll</h4>
+                        <p>Spicy zinga chicken in a roll</p>
+                    </div>
+                    <div class="item-price">Rs 240</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Beef Bihari Roll</h4>
+                        <p>Traditional Bihari beef in roll form</p>
+                    </div>
+                    <div class="item-price">Rs 240</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Smoky Garlic Chicken Roll</h4>
+                        <p>Garlic-infused smoky chicken roll</p>
+                    </div>
+                    <div class="item-price">Rs 250</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Bablooz Master Blaster Roll</h4>
+                        <p>Our signature roll with multiple fillings</p>
+                    </div>
+                    <div class="item-price">Rs 380</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SANDWICH Section -->
+        <section id="sandwich" class="menu-section">
+            <div class="section-title">
+                <h2>SANDWICH</h2>
+                <p>Hearty sandwiches for every taste</p>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Chicken Sandwich</h4>
+                        <p>Classic chicken sandwich</p>
+                    </div>
+                    <div class="item-price">Rs 350</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Chicken Cheese Sandwich</h4>
+                        <p>Chicken sandwich with cheese</p>
+                    </div>
+                    <div class="item-price">Rs 390</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Chicken Club Sandwich</h4>
+                        <p>Triple-decker club sandwich</p>
+                    </div>
+                    <div class="item-price">Rs 420</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Chicken Grilled Sandwich</h4>
+                        <p>Grilled chicken sandwich</p>
+                    </div>
+                    <div class="item-price">Rs 420</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Chicken Tandoori Sandwich</h4>
+                        <p>Tandoori chicken in sandwich</p>
+                    </div>
+                    <div class="item-price">Rs 420</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Chicken Malai Sandwich</h4>
+                        <p>Creamy malai chicken sandwich</p>
+                    </div>
+                    <div class="item-price">Rs 450</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Aussie Beef Sandwich</h4>
+                        <p>Beef sandwich with Australian flavors</p>
+                    </div>
+                    <div class="item-price">Rs 450</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Beef Barbeque Sandwich</h4>
+                        <p>BBQ beef sandwich</p>
+                    </div>
+                    <div class="item-price">Rs 450</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Chicken Crispy Sandwich</h4>
+                        <p>Crispy chicken fillet sandwich</p>
+                    </div>
+                    <div class="item-price">Rs 470</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Pizza Sandwich</h4>
+                        <p>Sandwich with pizza toppings</p>
+                    </div>
+                    <div class="item-price">Rs 520</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Bablooz Special Edition</h4>
+                        <p>Our signature special sandwich</p>
+                    </div>
+                    <div class="item-price">Rs 520</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHINESE Section -->
+        <section id="chinese" class="menu-section">
+            <div class="section-title">
+                <h2>CHINESE</h2>
+                <p>Authentic Chinese flavors</p>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Vegetable Rice</h4>
+                        <p>Fried rice with fresh vegetables</p>
+                    </div>
+                    <div class="item-price">Rs 290</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Egg Fried Rice</h4>
+                        <p>Classic egg fried rice</p>
+                    </div>
+                    <div class="item-price">Rs 320</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Chicken Fried Rice</h4>
+                        <p>Chicken fried rice with vegetables</p>
+                    </div>
+                    <div class="item-price">Rs 360</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Vegetable Chowmein</h4>
+                        <p>Stir-fried noodles with vegetables</p>
+                    </div>
+                    <div class="item-price">Rs 410</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Chicken Chowmein</h4>
+                        <p>Chicken noodles with vegetables</p>
+                    </div>
+                    <div class="item-price">Rs 450</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Chicken Shashlik</h4>
+                        <p>Chicken shashlik with vegetables</p>
+                    </div>
+                    <div class="item-price">Rs 650</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Chicken Chilli Vegetable</h4>
+                        <p>Spicy chicken with vegetables</p>
+                    </div>
+                    <div class="item-price">Rs 650</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Chicken Manchurian</h4>
+                        <p>Classic chicken manchurian</p>
+                    </div>
+                    <div class="item-price">Rs 650</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Chicken Chilli Dry</h4>
+                        <p>Dry chili chicken</p>
+                    </div>
+                    <div class="item-price">Rs 650</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Szechuan Chicken</h4>
+                        <p>Spicy Szechuan style chicken</p>
+                    </div>
+                    <div class="item-price">Rs 750</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PASTA Section -->
+        <section id="pasta" class="menu-section">
+            <div class="section-title">
+                <h2>PASTA</h2>
+                <p>Italian-inspired pasta dishes</p>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Spaghetti Red Sauce</h4>
+                        <p>Spaghetti with tangy red sauce</p>
+                    </div>
+                    <div class="item-price">Rs 460</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Spaghetti White Sauce</h4>
+                        <p>Spaghetti with creamy white sauce</p>
+                    </div>
+                    <div class="item-price">Rs 460</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Cheesy Spaghetti</h4>
+                        <p>Spaghetti loaded with cheese</p>
+                    </div>
+                    <div class="item-price">Rs 550</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>White Sauce Pasta</h4>
+                        <p>Pasta in creamy white sauce</p>
+                    </div>
+                    <div class="item-price">Rs 590</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Red Sauce Pasta</h4>
+                        <p>Pasta in tangy red sauce</p>
+                    </div>
+                    <div class="item-price">Rs 590</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Chicken Jalfrezi</h4>
+                        <p>Spicy chicken jalfrezi with pasta</p>
+                    </div>
+                    <div class="item-price">Rs 650</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Alfredo Pasta</h4>
+                        <p>Creamy alfredo pasta</p>
+                    </div>
+                    <div class="item-price">Rs 650</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TIKKA Section -->
+        <section id="tikka" class="menu-section">
+            <div class="section-title">
+                <h2>TIKKA</h2>
+                <p>Flavorful tikka dishes</p>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Ham Burger</h4>
+                        <p>Classic ham burger</p>
+                    </div>
+                    <div class="item-price">Rs 390</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Cheese Burger</h4>
+                        <p>Burger with cheese</p>
+                    </div>
+                    <div class="item-price">Rs 440</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Bablooz Smash Burger</h4>
+                        <p>Our signature smash burger</p>
+                    </div>
+                    <div class="item-price">Rs 590</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Double Ham burger without Cheese</h4>
+                        <p>Double patty ham burger</p>
+                    </div>
+                    <div class="item-price">Rs 690</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Double Ham Cheese Blaster</h4>
+                        <p>Double patty with cheese</p>
+                    </div>
+                    <div class="item-price">Rs 790</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BURGERS Section -->
+        <section id="burgers" class="menu-section">
+            <div class="section-title">
+                <h2>BURGERS</h2>
+                <p>Juicy burgers for every craving</p>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Sub Zinger Burger</h4>
+                        <p>Spicy zinger burger</p>
+                    </div>
+                    <div class="item-price">Rs 270</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Grilled Chicken Burger</h4>
+                        <p>Grilled chicken patty burger</p>
+                    </div>
+                    <div class="item-price">Rs 390</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Crispy Zinga Burger</h4>
+                        <p>Crispy zinga chicken burger</p>
+                    </div>
+                    <div class="item-price">Rs 440</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Jalepeno Burger</h4>
+                        <p>Burger with spicy jalapeños</p>
+                    </div>
+                    <div class="item-price">Rs 490</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Chipotle Burger</h4>
+                        <p>Burger with chipotle sauce</p>
+                    </div>
+                    <div class="item-price">Rs 490</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Cheetos Burger</h4>
+                        <p>Burger with Cheetos crunch</p>
+                    </div>
+                    <div class="item-price">Rs 490</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Chicky Cheesy Korean Burger</h4>
+                        <p>Korean-style chicken cheese burger</p>
+                    </div>
+                    <div class="item-price">Rs 490</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Bablooz Special Burger</h4>
+                        <p>Our signature special burger</p>
+                    </div>
+                    <div class="item-price">Rs 520</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Mighty Zinger Burger (Double Patty)</h4>
+                        <p>Double patty zinger burger</p>
+                    </div>
+                    <div class="item-price">Rs 650</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BEEF BURGERS Section -->
+        <section id="beef-burgers" class="menu-section">
+            <div class="section-title">
+                <h2>BEEF BURGERS</h2>
+                <p>Hearty beef burgers</p>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Ham Burger</h4>
+                        <p>Classic beef ham burger</p>
+                    </div>
+                    <div class="item-price">Rs 390</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Cheese Burger</h4>
+                        <p>Beef burger with cheese</p>
+                    </div>
+                    <div class="item-price">Rs 440</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Bablooz Smash Burger</h4>
+                        <p>Our signature beef smash burger</p>
+                    </div>
+                    <div class="item-price">Rs 590</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Double Ham burger without Cheese</h4>
+                        <p>Double beef patty burger</p>
+                    </div>
+                    <div class="item-price">Rs 690</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Double Ham Cheese Blaster</h4>
+                        <p>Double beef patty with cheese</p>
+                    </div>
+                    <div class="item-price">Rs 790</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BARBEQUE Section -->
+        <section id="bbq" class="menu-section">
+            <div class="section-title">
+                <h2>BARBEQUE</h2>
+                <p>Smoky and flavorful BBQ dishes</p>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Chicken Tikka (Leg)</h4>
+                        <p>BBQ chicken leg tikka</p>
+                    </div>
+                    <div class="item-price">Rs 350</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Chicken Tikka (Chest)</h4>
+                        <p>BBQ chicken chest tikka</p>
+                    </div>
+                    <div class="item-price">Rs 410</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Green Tikka</h4>
+                        <p>Green masala chicken tikka</p>
+                    </div>
+                    <div class="item-price">Rs 420</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Malai Tikka</h4>
+                        <p>Creamy malai chicken tikka</p>
+                    </div>
+                    <div class="item-price">Rs 420</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Bihari Chicken Tikka</h4>
+                        <p>Bihari style chicken tikka</p>
+                    </div>
+                    <div class="item-price">Rs 420</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Beef Seekh Kabab</h4>
+                        <p>Juicy beef seekh kabab</p>
+                    </div>
+                    <div class="item-price">Rs 460</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Butter Boti</h4>
+                        <p>Buttery soft chicken boti</p>
+                    </div>
+                    <div class="item-price">Rs 480</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Reshmi Kabab</h4>
+                        <p>Silky reshmi chicken kabab</p>
+                    </div>
+                    <div class="item-price">Rs 490</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Mughlai Boti</h4>
+                        <p>Royal Mughlai style boti</p>
+                    </div>
+                    <div class="item-price">Rs 490</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Malai Boti</h4>
+                        <p>Creamy malai chicken boti</p>
+                    </div>
+                    <div class="item-price">Rs 490</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Darbari Boti</h4>
+                        <p>Royal darbari style boti</p>
+                    </div>
+                    <div class="item-price">Rs 490</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Chicken Chatkhara Boti</h4>
+                        <p>Tangy and spicy chatkhara boti</p>
+                    </div>
+                    <div class="item-price">Rs 490</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Chicken Bihari Boti</h4>
+                        <p>Bihari style chicken boti</p>
+                    </div>
+                    <div class="item-price">Rs 490</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Chandan Kabab</h4>
+                        <p>Aromatic chandan kabab</p>
+                    </div>
+                    <div class="item-price">Rs 520</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Beef Bihari Boti</h4>
+                        <p>Bihari style beef boti</p>
+                    </div>
+                    <div class="item-price">Rs 520</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Turkish kabab</h4>
+                        <p>Authentic Turkish style kabab</p>
+                    </div>
+                    <div class="item-price">Rs 520</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Bablooz Special Boti (Thigh)</h4>
+                        <p>Our signature special thigh boti</p>
+                    </div>
+                    <div class="item-price">Rs 590</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PLATTERS Section -->
+        <section id="platters" class="menu-section">
+            <div class="section-title">
+                <h2>PLATTERS</h2>
+                <p>Perfect for sharing with friends and family</p>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Chatkhara Platter</h4>
+                        <p>Assortment of tangy and spicy items</p>
+                    </div>
+                    <div class="item-price">Rs 2000</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Kabab Platter</h4>
+                        <p>Variety of our signature kababs</p>
+                    </div>
+                    <div class="item-price">Rs 2250</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Bablooz Mini Platter</h4>
+                        <p>Small platter for 1-2 persons</p>
+                    </div>
+                    <div class="item-price">Rs 1100</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Bablooz Medi Platter</h4>
+                        <p>Medium platter for 2-3 persons</p>
+                    </div>
+                    <div class="item-price">Rs 1500</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Bablooz Large Platter</h4>
+                        <p>Large platter for 3-4 persons</p>
+                    </div>
+                    <div class="item-price">Rs 2000</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Bablooz Jumbo Platter</h4>
+                        <p>Jumbo platter for 5-6 persons</p>
+                    </div>
+                    <div class="item-price">Rs 3500</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>BARBEQUE RICE PLATTER (2 persons)</h4>
+                        <p>BBQ with rice for 2 persons</p>
+                    </div>
+                    <div class="item-price">Rs 1490</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>BARBEQUE RICE PLATTER (3 persons)</h4>
+                        <p>BBQ with rice for 3 persons</p>
+                    </div>
+                    <div class="item-price">Rs 1850</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>BARBEQUE RICE PLATTER (4 persons)</h4>
+                        <p>BBQ with rice for 4 persons</p>
+                    </div>
+                    <div class="item-price">Rs 2650</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Tikka Platter (2 persons)</h4>
+                        <p>Tikka assortment for 2 persons</p>
+                    </div>
+                    <div class="item-price">Rs 1000</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Tikka Platter (4 persons)</h4>
+                        <p>Tikka assortment for 4 persons</p>
+                    </div>
+                    <div class="item-price">Rs 1800</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PIZZAS Section -->
+        <section id="pizzas" class="menu-section">
+            <div class="section-title">
+                <h2>PIZZAS</h2>
+                <p>Delicious pizzas in three sizes</p>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Dominic Pizza</h4>
+                        <p>Special Dominic recipe pizza</p>
+                    </div>
+                    <div class="price-variants">
+                        <div class="price-variant">Small: Rs 430</div>
+                        <div class="price-variant">Medium: Rs 670</div>
+                        <div class="price-variant">Large: Rs 990</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Barbeque Pizza</h4>
+                        <p>Pizza with BBQ sauce and toppings</p>
+                    </div>
+                    <div class="price-variants">
+                        <div class="price-variant">Small: Rs 430</div>
+                        <div class="price-variant">Medium: Rs 670</div>
+                        <div class="price-variant">Large: Rs 990</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Chicken Fajita</h4>
+                        <p>Fajita style chicken pizza</p>
+                    </div>
+                    <div class="price-variants">
+                        <div class="price-variant">Small: Rs 430</div>
+                        <div class="price-variant">Medium: Rs 670</div>
+                        <div class="price-variant">Large: Rs 990</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Malai Tikka</h4>
+                        <p>Pizza with malai tikka topping</p>
+                    </div>
+                    <div class="price-variants">
+                        <div class="price-variant">Small: Rs 430</div>
+                        <div class="price-variant">Medium: Rs 670</div>
+                        <div class="price-variant">Large: Rs 990</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Cheese Lover</h4>
+                        <p>Pizza loaded with multiple cheeses</p>
+                    </div>
+                    <div class="price-variants">
+                        <div class="price-variant">Small: Rs 430</div>
+                        <div class="price-variant">Medium: Rs 670</div>
+                        <div class="price-variant">Large: Rs 990</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Beef Peproni</h4>
+                        <p>Classic beef pepperoni pizza</p>
+                    </div>
+                    <div class="price-variants">
+                        <div class="price-variant">Small: Rs 430</div>
+                        <div class="price-variant">Medium: Rs 670</div>
+                        <div class="price-variant">Large: Rs 990</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Tikka Blaster</h4>
+                        <p>Pizza with tikka blast flavor</p>
+                    </div>
+                    <div class="price-variants">
+                        <div class="price-variant">Small: Rs 430</div>
+                        <div class="price-variant">Medium: Rs 670</div>
+                        <div class="price-variant">Large: Rs 990</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Bihari</h4>
+                        <p>Bihari style pizza</p>
+                    </div>
+                    <div class="price-variants">
+                        <div class="price-variant">Small: Rs 430</div>
+                        <div class="price-variant">Medium: Rs 670</div>
+                        <div class="price-variant">Large: Rs 990</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Sriracha Pizza</h4>
+                        <p>Spicy sriracha flavored pizza</p>
+                    </div>
+                    <div class="price-variants">
+                        <div class="price-variant">Small: Rs 450</div>
+                        <div class="price-variant">Medium: Rs 690</div>
+                        <div class="price-variant">Large: Rs 1040</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Chicken Supreme</h4>
+                        <p>Supreme chicken toppings pizza</p>
+                    </div>
+                    <div class="price-variants">
+                        <div class="price-variant">Small: Rs 450</div>
+                        <div class="price-variant">Medium: Rs 690</div>
+                        <div class="price-variant">Large: Rs 1040</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Pineapple Pizza</h4>
+                        <p>Pizza with sweet pineapple toppings</p>
+                    </div>
+                    <div class="price-variants">
+                        <div class="price-variant">Small: Rs 450</div>
+                        <div class="price-variant">Medium: Rs 690</div>
+                        <div class="price-variant">Large: Rs 1040</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Pepper Pop Pizza</h4>
+                        <p>Pizza with peppery pop flavor</p>
+                    </div>
+                    <div class="price-variants">
+                        <div class="price-variant">Small: Rs 470</div>
+                        <div class="price-variant">Medium: Rs 700</div>
+                        <div class="price-variant">Large: Rs 1090</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Meat Lover</h4>
+                        <p>Pizza loaded with multiple meats</p>
+                    </div>
+                    <div class="price-variants">
+                        <div class="price-variant">Small: Rs 470</div>
+                        <div class="price-variant">Medium: Rs 710</div>
+                        <div class="price-variant">Large: Rs 1190</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Calzone</h4>
+                        <p>Folded pizza with stuffed fillings</p>
+                    </div>
+                    <div class="price-variants">
+                        <div class="price-variant">Small: Rs 470</div>
+                        <div class="price-variant">Medium: Rs 710</div>
+                        <div class="price-variant">Large: Rs 1190</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Bablooz Special Pizza</h4>
+                        <p>Our signature special pizza</p>
+                    </div>
+                    <div class="price-variants">
+                        <div class="price-variant">Small: Rs 470</div>
+                        <div class="price-variant">Medium: Rs 710</div>
+                        <div class="price-variant">Large: Rs 1190</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BEVERAGES Section -->
+        <section id="beverages" class="menu-section">
+            <div class="section-title">
+                <h2>BEVERAGES</h2>
+                <p>Refresh yourself with our drinks</p>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Slice Juice</h4>
+                        <p>Refreshing fruit juice</p>
+                    </div>
+                    <div class="item-price">Rs 50</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Cold Drink - 345ml</h4>
+                        <p>Carbonated soft drink</p>
+                    </div>
+                    <div class="item-price">Rs 80</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Cold Drink- 500 ml</h4>
+                        <p>Carbonated soft drink</p>
+                    </div>
+                    <div class="item-price">Rs 110</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Cold Drink - Can</h4>
+                        <p>Canned soft drink</p>
+                    </div>
+                    <div class="item-price">Rs 120</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Cold Drink - 1 Litre</h4>
+                        <p>1 litre soft drink bottle</p>
+                    </div>
+                    <div class="item-price">Rs 160</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Cold Drink - 1.5 Litre</h4>
+                        <p>1.5 litre soft drink bottle</p>
+                    </div>
+                    <div class="item-price">Rs 220</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Mineral water - Small</h4>
+                        <p>Small bottled water</p>
+                    </div>
+                    <div class="item-price">Rs 60</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Mineral water - Large</h4>
+                        <p>Large bottled water</p>
+                    </div>
+                    <div class="item-price">Rs 100</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXTRAS Section -->
+        <section id="extras" class="menu-section">
+            <div class="section-title">
+                <h2>EXTRAS</h2>
+                <p>Additional items to complement your meal</p>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Raita</h4>
+                        <p>Yogurt side dish</p>
+                    </div>
+                    <div class="item-price">Rs 50</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Salad</h4>
+                        <p>Fresh vegetable salad</p>
+                    </div>
+                    <div class="item-price">Rs 50</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Chapati</h4>
+                        <p>Traditional flatbread</p>
+                    </div>
+                    <div class="item-price">Rs 20</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Puri Paratha (Small)</h4>
+                        <p>Small portion of puri paratha</p>
+                    </div>
+                    <div class="item-price">Rs 70</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Puri Paratha (Large)</h4>
+                        <p>Large portion of puri paratha</p>
+                    </div>
+                    <div class="item-price">Rs 120</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section about">
+                    <h2 style="color: var(--secondary-color); margin-bottom: 20px;">Bablooz</h2>
+                    <p>Bablooz serves delicious pizza, BBQ, burgers, Chinese, and fast food, crafted fresh with love, flavor, and quick service daily.</p>
+                    <div class="footer-links">
+                        <a href="#">Terms & conditions</a>
+                        <a href="#">Privacy policy</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                        <li><a href="#">Order Now</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section contact">
+                    <h4>Contact Details</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-phone"></i> +92 311 110 5669</p>
+                        <p><i class="fas fa-envelope"></i> bablooz.contact@gmail.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Main Chiragh hotel, Landhi, Karachi, Pakistan</p>
+                    </div>
+                </div>
+                
+                <div class="footer-section social">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <div class="newsletter">
+                        <h5>Subscribe to our Newsletter</h5>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Your email address" required>
+                            <button type="submit">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Bablooz | Where Taste Originates From. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mainNav = document.querySelector('.main-nav');
+            
+            if (menuToggle && mainNav) {
+                menuToggle.addEventListener('click', function() {
+                    mainNav.classList.toggle('active');
+                    menuToggle.innerHTML = mainNav.classList.contains('active') 
+                        ? '<i class="fas fa-times"></i>' 
+                        : '<i class="fas fa-bars"></i>';
+                });
+            }
+
+            // Menu Navigation
+            const menuNavItems = document.querySelectorAll('.menu-nav-item');
+            const menuSections = document.querySelectorAll('.menu-section');
+
+            menuNavItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Remove active class from all items
+                    menuNavItems.forEach(navItem => {
+                        navItem.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked item
+                    this.classList.add('active');
+                    
+                    // Hide all menu sections
+                    menuSections.forEach(section => {
+                        section.classList.remove('active');
+                    });
+                    
+                    // Show the selected section
+                    const category = this.getAttribute('data-category');
+                    const targetSection = document.getElementById(category);
+                    if (targetSection) {
+                        targetSection.classList.add('active');
+                        
+                        // Scroll to the section
+                        targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+
+            // Header scroll effect
+            const header = document.querySelector('.header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
